@@ -49,3 +49,4 @@ Icon
 
 # JetBrains
 .idea
+package-lock.json

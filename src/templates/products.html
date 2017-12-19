@@ -1,0 +1,93 @@
+<div data-ng-controller="ProductsCtrl">
+
+  <div class="row alerts-container" data-ng-show="alerts.length">
+    <div class="col-xs-12">
+      <uib-alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+    </div>
+  </div>
+
+  <div class="row">
+  	<div class="col-lg-3 col-md-6 col-xs-12">
+  		<rd-widget>
+  			<rd-widget-body>
+  				<div class="widget-icon blue pull-left">
+  					<i class="fa fa-files-o"></i>
+  				</div>
+  				<div class="title">{{documents.length}}</div>
+  				<div class="comment">Docs needed</div>
+  			</rd-widget-body>
+  		</rd-widget>
+  	</div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+  		<rd-widget>
+  			<rd-widget-body>
+  				<div class="widget-icon red pull-left">
+  					<i class="fa fa-times"></i>
+  				</div>
+  				<div class="title">{{pendingDocs}}</div>
+  				<div class="comment">Pending docs</div>
+  			</rd-widget-body>
+  		</rd-widget>
+  	</div>
+  	<div class="col-lg-3 col-md-6 col-xs-12">
+  		<rd-widget>
+  			<rd-widget-body>
+  				<div class="widget-icon orange pull-left">
+  					<i class="fa fa-warning"></i>
+  				</div>
+  				<div class="title">{{reviewDocs}}</div>
+  				<div class="comment">Docs to review</div>
+  			</rd-widget-body>
+  		</rd-widget>
+  	</div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+  		<rd-widget>
+  			<rd-widget-body>
+  				<div class="widget-icon green pull-left">
+  					<i class="fa fa-check"></i>
+  				</div>
+  				<div class="title">{{validDocs}}</div>
+  				<div class="comment">Valided doc</div>
+  			</rd-widget-body>
+  		</rd-widget>
+  	</div>
+  </div>
+
+  <div class="row">
+  	<div class="col-lg-6">
+  		<rd-widget>
+        	<rd-widget-header icon="fa-file-text" title="Documents list">
+  				      <a href="#" target="_blank"><i class="fa fa-folder"></i>Box folder</a>
+        	</rd-widget-header>
+        	<rd-widget-body classes="large no-padding">
+  				<div class="table-responsive">
+  					<table class="table table-striped">
+              <thead>
+  							<tr><th class="text-center" width="10px">ID</th><th>Name</th><th>Date added</th><th>Status</th></tr>
+  						</thead>
+  						<tbody ng-repeat="doc in documents">
+                <tr>
+                  <td width="10px">{{$index+1}}</td>
+                  <td>{{doc.name}}</td>
+                  <td>{{doc.added}}</td>
+                  <td><i class="fa text-{{doc.status}}" ng-class="{'fa-times-circle': (doc.status=='danger'),'fa-check': (doc.status=='success'),'fa-warning': (doc.status=='warning')}"></i></td>
+                </tr>
+  						</tbody>
+  					</table>
+  				</div>
+  			</rd-widget-body>
+  		</rd-widget>
+  	</div>
+  	<div class="col-lg-6">
+  		<rd-widget>
+  			<rd-widget-header icon="fa-comments-o" title="Chat">
+  				<!--<input type="text" placeholder="Search" class="form-control input-sm" />-->
+  			</rd-widget-header>
+  			<rd-widget-body classes="large no-padding">
+  				<!-- add chat box here -->
+  			</rd-widget-body>
+  		<rd-widget>
+  	</div>
+  </div>
+
+</div>
