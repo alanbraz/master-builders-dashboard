@@ -9,7 +9,7 @@ angular
 function ProductsCtrl($scope) {
     $scope.alerts = [{
         type: 'success',
-        msg: 'Hey Connor congratulations on your new loan!'
+        msg: 'Connor Cook congratulations on your new loan!'
     }, {
         type: 'danger',
         msg: 'Some documents are missing. Please review your documents list.'
@@ -59,4 +59,5 @@ function ProductsCtrl($scope) {
     $scope.pendingDocs = $scope.documents.filter(function(value) { return value.status === 'danger' }).length;
     $scope.validDocs = $scope.documents.filter(function(value) { return value.status === 'success' }).length;
     $scope.reviewDocs = $scope.documents.filter(function(value) { return value.status === 'warning' }).length;
+
 }
