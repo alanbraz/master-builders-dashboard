@@ -54,44 +54,66 @@
   	</div>
   </div>
   -->
-  
+
   <div class="row">
-  	<div class="col-lg-8">
-  		<rd-widget>
-        	<rd-widget-header icon="fa-file-text" title="Documents list">
-  				      <a href="#" target="_blank"><i class="fa fa-folder"></i>Box folder</a>
-        	</rd-widget-header>
-        	<rd-widget-body classes="large no-padding">
-  				<div class="table-responsive">
-  					<table class="table table-striped">
+    <div class="col-lg-8">
+      <rd-widget>
+        <rd-widget-header icon="fa-file-text" title="Documents list">
+          <a href="#" target="_blank"><i class="fa fa-folder"></i>Box folder</a>
+        </rd-widget-header>
+        <rd-widget-body classes="large no-padding">
+          <div class="table-responsive">
+            <table class="table table-striped">
               <thead>
-  							<tr><th class="text-center" width="10px">ID</th><th>Name</th><th>Date added</th><th>Status</th></tr>
-  						</thead>
-  						<tbody ng-repeat="doc in documents">
+                <tr>
+                  <th class="text-center" width="10px">ID</th>
+                  <th>Name</th>
+                  <th>Date added</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody ng-repeat="doc in documents">
                 <tr>
                   <td width="10px">{{$index+1}}</td>
                   <td>{{doc.name}}</td>
                   <td>{{doc.added}}</td>
                   <td><i class="fa text-{{doc.status}}" ng-class="{'fa-times-circle': (doc.status=='danger'),'fa-check': (doc.status=='success'),'fa-warning': (doc.status=='warning')}"></i></td>
                 </tr>
-  						</tbody>
-  					</table>
-  				</div>
-  			</rd-widget-body>
-  		</rd-widget>
-  	</div>
-  	<div class="col-lg-4">
-  		<rd-widget>
-  			<rd-widget-header icon="fa-comments-o" title="Chat">
-  				<!--<input type="text" placeholder="Search" class="form-control input-sm" />-->
-  			</rd-widget-header>
-  			<rd-widget-body classes="large no-padding">
-  				<!-- add chat box here -->
+              </tbody>
+            </table>
+          </div>
+        </rd-widget-body>
+      </rd-widget>
+    </div>
+    <div class="col-lg-4">
+      <h4>Upload a document</h4>
+      <button ngf-select="uploadFiles($files, $invalidFiles)" multiple
+               ngf-max-size="5MB">
+          Select documents</button>
+          <p ng-show="files">Analyzing documents:</p>
+          <ul>
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+              <span class="progress" ng-show="f.progress >= 0">
+                <div style="width:{{f.progress}}%"
+                    ng-bind="f.progress + '%'"></div>
+              </span>
+            </li>
+            <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+            </li>
+          </ul>
+          {{errorMsg}}
+
+      <rd-widget>
+        <rd-widget-header icon="fa-comments-o" title="Chat">
+          <!--<input type="text" placeholder="Search" class="form-control input-sm" />-->
+        </rd-widget-header>
+        <rd-widget-body classes="large no-padding">
+          <!-- add chat box here -->
           <iframe src="https://master-builders-service.mybluemix.net/ui/#/0" border="0" width="100%" height="350">
           </iframe>
-  			</rd-widget-body>
-  		<rd-widget>
-  	</div>
+        </rd-widget-body>
+        <rd-widget>
+    </div>
   </div>
 
 </div>
