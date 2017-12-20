@@ -78,6 +78,9 @@ function ProductsCtrl($scope, $http, $timeout) {
         $scope.files = files;
         $scope.errFiles = errFiles;
         //console.log(files);
+        $scope.documents.forEach(function(d) {
+          d.changed = false;
+        })
         $scope.alerts = [];
         for (var i = 0; i < files.length; i++) {
           console.log(files[i]);
@@ -88,6 +91,8 @@ function ProductsCtrl($scope, $http, $timeout) {
           if (file.name.toLowerCase().indexOf("pay") > -1 || file.name.toLowerCase().indexOf("stub") > -1) {
             $scope.documents[3].added = "12/20/2017";
             $scope.documents[3].status = "success";
+            $scope.documents[3].changed = true;
+            $scope.documents[3].fileName = file.name;
             $scope.alerts.push({
               type: 'success',
               msg: 'File ' + file.name + ' detected as a Paystub and added successfully!'
@@ -95,6 +100,8 @@ function ProductsCtrl($scope, $http, $timeout) {
           } else if (file.name.toLowerCase().indexOf("tax") > -1 || file.name.toLowerCase().indexOf("1040") > -1 || file.name.toLowerCase().indexOf("irs") > -1) {
             $scope.documents[4].added = "12/20/2017";
             $scope.documents[4].status = "success";
+            $scope.documents[4].changed = true;
+            $scope.documents[4].fileName = file.name;
             $scope.alerts.push({
               type: 'success',
               msg: 'File ' + file.name + ' detected as a Tax return 1040 and added successfully!'
